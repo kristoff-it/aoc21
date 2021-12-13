@@ -14,19 +14,6 @@ pub fn main() !void {
     while (it.next()) |nodeA| {
         const nodeB = it.next().?;
 
-        const mytuple: [2]usize = .{ 10, 5 };
-
-        const Point = struct {
-            a: usize,
-            b: usize,
-        };
-
-        const p = Point{ .a = 1, .b = 2 };
-
-        const p: Point = .{ .a = 1, .b = 2 };
-
-        inline for (mytuple) |x| {}
-
         for ([2][2][]const u8{ .{ nodeA, nodeB }, .{ nodeB, nodeA } }) |kv| {
             const entry = try g.getOrPut(kv[0]);
             if (!entry.found_existing) entry.value_ptr.* = std.ArrayList([]const u8).init(alloc);
